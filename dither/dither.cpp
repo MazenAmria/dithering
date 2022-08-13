@@ -34,6 +34,27 @@ cv::Mat dither::floyd_stienberg(cv::Mat img, int n_bits)
     return dithered_img;
 }
 
+cv::Mat dither::quantize(cv::Mat img, int n_bits)
+{
+    int levels = (1 << n_bits) - 1;
+    cv::Mat quantized_img = img.clone();
+
+    for (int i = 0; i < img.rows; ++i)
+    {
+        for (int j = 0; j < img.cols; ++j)
+        {
+            cv::Vec3b vec = quantized_img.at<cv::Vec3b>(i, j);
+
+            for (int i = 0; i < 3; ++i)
+                vec[i] = std::round(vec[i] * levels * 1.0 / 255.0) * 255 / levels;
+
+            quantized_img.at<cv::Vec3b>(i, j) = vec;
+        }
+    }
+
+    return quantized_img;
+}
+
 cv::Vec3b dither::rectified_addition(cv::Vec3b v1, cv::Vec3b v2)
 {
     cv::Vec3b result;
