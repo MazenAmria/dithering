@@ -53,4 +53,6 @@
 */cmake_install.cmake
 .DS_Store
 
+.vscode/
+
 # End of https://www.gitignore.io/api/c++,bazel,opencv
