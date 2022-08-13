@@ -9,7 +9,7 @@ namespace dither
 {
     cv::Mat floyd_stienberg(cv::Mat img, int n_bits);
     cv::Mat quantize(cv::Mat img, int n_bits);
-    cv::Vec3b rectified_addition(cv::Vec3b v1, cv::Vec3b v2);
+    cv::Vec3b clipped_addition(cv::Vec3b v1, cv::Vec3b v2);
 }
 
 #endif //__DITHER_HPP__
